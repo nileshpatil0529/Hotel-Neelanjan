@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+mat-card {
+  width: 400px; /* Set a fixed width for the form */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form fields */
+}
+
+mat-form-field {
+  width: 100%; /* Ensure fields take full width */
+}
+
+#file-upload {
+  margin-top: 10px;
+}
+
+button {
+  min-width: 100px; /* Ensure buttons have a minimum width */
+}
+
+button[type="submit"] {
+  margin-left: auto; /* Push submit button to the right */
+}

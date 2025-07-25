@@ -1,0 +1,109 @@
+<div class="scrollable-container">
+  <h2 *ngIf="!checkComponent" class="title">{{'Order' | uppercase}}</h2>
+  <h2 *ngIf="checkComponent" class="title">{{'bill' | uppercase}}</h2>
+
+  <div class="button-container">
+    
+    <!-- Payment Method Dropdown -->
+    <mat-form-field appearance="outline" class="payment-dropdown" *ngIf="getUserName()?.toLowerCase() === 'admin' && checkComponent && checkComponent !== 'history'">
+      <mat-label>Payment Mode</mat-label>
+      <mat-select [(ngModel)]="paymentMethod" (selectionChange)="onPaymentMethodSelect()">
+        <mat-option *ngFor="let option of paymentOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Clear Pending Method Dropdown -->
+    <mat-form-field appearance="outline" class="payment-dropdown" *ngIf="getUserName()?.toLowerCase() === 'admin' && checkComponent === 'history'">
+      <mat-label>Clear Due</mat-label>
+      <mat-select [(ngModel)]="paymentMethod" (selectionChange)="clearPending()">
+        <mat-option *ngFor="let option of paymentOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Shift table Dropdown -->
+    <mat-form-field *ngIf="getUserName()?.toLowerCase() === 'admin' && checkComponent && checkComponent !== 'history'" appearance="outline" class="payment-dropdown">
+      <mat-label>Shift</mat-label>
+      <mat-select [(ngModel)]="shift" (selectionChange)="onShiftSelect()">
+        <mat-option *ngFor="let table of tableList" [value]="table">
+          {{ table }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" *ngIf="getUserName()?.toLowerCase() === 'admin' && checkComponent && checkComponent !== 'history'" (click)="applyDiscount()">Add Discount</button>
+    <button mat-raised-button color="primary" *ngIf="checkComponent !== 'history'" (click)="!checkComponent ? makeOrder() : printBill('qt')">Print QT</button>
+    <button mat-raised-button color="accent" type="button" *ngIf="checkComponent" (click)="checkComponent =='history' ? printBill('history') : printBill('bill')">Print Bill</button>
+    <button mat-raised-button color="warn" type="button" (click)="mergeAllBill()" *ngIf="(mergeCount > 1) && checkComponent !=='history'">Merge {{mergeCount}}</button>
+    <button mat-raised-button color="basic" type="button" (click)="close();">Cancel</button>
+  </div>
+
+  <div class="print">
+    <div *ngIf="checkComponent" class="bill-info">
+      <p>Date: {{ today | date: 'dd/MM/yyyy, h:mm a'}}</p>
+      <p>Bill No: {{ billNo }}</p>
+      <p>Table No: {{ tableNumber }}</p>
+    </div>
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bill-table">
+
+        <!-- Product Name Column -->
+        <ng-container matColumnDef="product_name">
+          <th mat-header-cell *matHeaderCellDef> Item </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="lang == 'e' || lang == 'all'">{{ element.product_name }}</div>
+            <div *ngIf="lang == 'm' || lang == 'all'">{{ element.marathi }}</div>
+          </td>
+        </ng-container>
+
+        <!-- Quantity Column -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Qty </th>
+          <td mat-cell *matCellDef="let element"> {{ element.quantity }} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="product_price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let element"> {{ element.product_price }} </td>
+        </ng-container>
+
+        <!-- Total Column -->
+        <ng-container matColumnDef="sub_total">
+          <th mat-header-cell *matHeaderCellDef> Total </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.quantity * element.product_price }}
+            <button *ngIf="checkComponent !== 'history' && checkComponent" mat-icon-button color="warn" (click)="deleteItem(billNo, element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Definitions -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- Total Row -->
+      <div class="summary-row" *ngIf="discount && discount > 0">
+        <div>Total:</div>
+        <div>{{ totalBill }} ₹</div>
+      </div>
+
+      <!-- Discount Row -->
+      <div class="summary-row" *ngIf="discount && discount > 0">
+        <div>Discount:</div>
+        <div>-{{ discount }} ₹</div>
+      </div>
+
+      <!-- Grand Total Row -->
+      <div class="summary-row">
+        <div>Grand Total:</div>
+        <div>{{ (totalBill - (discount || 0)) }} ₹</div>
+      </div>
+    </div>
+  </div>
+</div>

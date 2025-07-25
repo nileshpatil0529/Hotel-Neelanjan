@@ -1,0 +1,29 @@
+/* Main container with margin */
+.container {
+    margin: 40px;
+    position: relative;
+}
+
+/* Button positioned at top right */
+.button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* Table container - Horizontally center */
+.table-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 60px;
+    /* Creates space between button and table */
+}
+
+/* No data message */
+.no-data {
+    margin-top: 20px;
+    font-size: 16px;
+    color: gray;
+    text-align: center;
+}

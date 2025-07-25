@@ -1,0 +1,57 @@
+<div class="container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Bill No Column -->
+    <ng-container matColumnDef="bill_no">
+      <th mat-header-cell *matHeaderCellDef>Bill No</th>
+      <td mat-cell *matCellDef="let element">{{ element.bill_no.toString().slice(-5) }}</td>
+    </ng-container>
+
+    <!-- Table No Column -->
+    <ng-container matColumnDef="table_no">
+      <th mat-header-cell *matHeaderCellDef>Table</th>
+      <td mat-cell *matCellDef="let element">{{ element.table_no }}</td>
+    </ng-container>
+
+    <!-- Seller Column -->
+    <ng-container matColumnDef="seller">
+      <th mat-header-cell *matHeaderCellDef>Seller</th>
+      <td mat-cell *matCellDef="let element">{{ element.seller | uppercase}}</td>
+    </ng-container>
+
+    <!-- Total Bill Column -->
+    <ng-container matColumnDef="total_bill">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let element">₹ {{ element.total - element.discount }}</td>
+    </ng-container>
+
+    <!-- Created At Column -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Time</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.createdAt | date: 'h:mm a' }}
+      </td>
+    </ng-container>
+
+    <!-- Delete Order -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element">
+        <button type="button" mat-icon-button color="warn" (click)="deleteOredr(element.bill_no, $event)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: displayedColumns"
+      (click)="bill(element.bill_no, $event)"
+      appClickEffect
+    ></tr>
+  </table>
+  <div *ngIf="!dataSource.length" class="no-data">
+    No Data Found !
+  </div>
+</div>

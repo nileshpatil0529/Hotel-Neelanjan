@@ -1,0 +1,26 @@
+<div class="container" style="margin-top: 100px;">
+  <mat-card class="card-design">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username" />
+        <mat-error *ngIf="userForm?.get('username')?.hasError('required')"
+          >Username is required</mat-error
+        >
+        <mat-error *ngIf="userForm.get('username').hasError('usernameExists')"
+          >Username already exists</mat-error
+        >
+      </mat-form-field>
+      
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="align"
+        [disabled]="userForm?.invalid"
+      >
+        Add User
+      </button> |
+      <button type="button" mat-raised-button (click)="back()">Cancel</button>
+    </form>
+  </mat-card>
+</div>

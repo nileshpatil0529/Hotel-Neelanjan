@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.quantity-control .btn {
+  width: 40px;
+  height: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.quantity-control .btn.minus {
+  background-color: #f44336;
+  color: white;
+}
+
+.quantity-control .btn.plus {
+  background-color: #4caf50;
+  color: white;
+}
+
+.quantity-control .quantity-display {
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 35px;
+  font-weight: bold;
+  background-color: #f9f9f9;
+}
+
+.no-data {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #777;
+}
+
+.product-info {
+  line-height: 25px;
+}
+
+.submit-button {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.viewport {
+  width: 100%;
+  border: 1px solid #ddd;
+  overflow: auto;
+}
+.mat-table td {
+  padding: 10px;
+}
+
+.select-tip {
+  width: 100px;
+}
+
+.form-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 50%; /* Adjust the max width */
+}
+
+.search-bar,
+.number-select {
+  flex: 1; /* Allows both elements to have equal width */
+  min-width: 50%; /* Ensures fields don't become too small */
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .search-bar,
+  .number-select {
+    min-width: 100%;
+  }
+}
+
+.spaced-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Adds spacing between .quantity-control and .action-buttons */
+}
+
+.spaced-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adds spacing between delete and edit buttons */
+}
+
+
+@media (min-width: 599px){
+  .mat-table {
+    width: 40% !important;
+  }
+}

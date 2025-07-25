@@ -1,0 +1,48 @@
+<div class="container">
+  <!-- Button at the top right -->
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="addUser()">Add User</button>
+  </div>
+
+  <!-- Centered Table -->
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <!-- User Name Column -->
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>User Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.user_name }}</td>
+      </ng-container>
+
+      <!-- Create Date Column -->
+      <ng-container matColumnDef="createDate">
+        <th mat-header-cell *matHeaderCellDef>Create Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdAt | date : "dd/MM/YYYY" }}
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button *ngIf="i !== 0" mat-mini-fab (click)="deleteUser(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div *ngIf="!dataSource.length" class="no-data">
+      No Data Found, Please add new users!
+    </div>
+  </div>
+</div>

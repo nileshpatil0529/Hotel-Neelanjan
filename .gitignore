@@ -1,0 +1,45 @@
+# ==========================
+# Angular (Frontend) - hotel_nilanjan_FE
+# ==========================
+/hotel_nilanjan_FE/node_modules/
+/hotel_nilanjan_FE/dist/
+/hotel_nilanjan_FE/.angular/cache/
+/hotel_nilanjan_FE/.env
+/hotel_nilanjan_FE/.vscode/
+/hotel_nilanjan_FE/.idea/
+/hotel_nilanjan_FE/npm-debug.log*
+/hotel_nilanjan_FE/yarn-error.log
+/hotel_nilanjan_FE/package-lock.json
+/hotel_nilanjan_FE/tmp/
+/hotel_nilanjan_FE/coverage/
+
+# ==========================
+# Express.js (Backend) - hotel_nilanjan_BE
+# ==========================
+/hotel_nilanjan_BE/node_modules/
+/hotel_nilanjan_BE/dist/
+/hotel_nilanjan_BE/.env
+/hotel_nilanjan_BE/.vscode/
+/hotel_nilanjan_BE/.idea/
+/hotel_nilanjan_BE/npm-debug.log*
+/hotel_nilanjan_BE/yarn-error.log
+/hotel_nilanjan_BE/package-lock.json
+
+# ==========================
+# Global ignores for repo
+# ==========================
+node_modules/
+.env
+.vscode/
+.idea/
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================
+# Build & Temp files
+# ==========================
+tmp/
+coverage/

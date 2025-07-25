@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the table horizontally */
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* "No Data Found!" message should align exactly under the table */
+.no-data {
+  max-width: 800px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  color: gray;
+  padding: 10px;
+}

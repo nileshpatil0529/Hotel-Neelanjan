@@ -1,0 +1,109 @@
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+mat-form-field {
+  flex: 1;
+}
+
+.mat-elevation-z8 {
+  margin-top: 10px;
+}
+.container {
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  border-radius: 4px;
+}
+
+/* General form container styles */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+/* Mat-form-field styles */
+.mat-form-field {
+  flex: 1;
+  min-width: 220px;
+  /* Ensures fields don’t get too narrow */
+  max-width: 100%;
+}
+
+/* Button styles */
+button {
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+  /* Stack form elements for smaller screens */
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .mat-form-field {
+    min-width: 100%;
+    /* Fields occupy full width */
+  }
+
+  button {
+    min-width: 100%;
+    /* Buttons occupy full width */
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Further reduce padding for very small screens */
+  .form-row {
+    gap: 8px;
+  }
+
+  .mat-form-field {
+    min-width: 100%;
+  }
+
+  button {
+    min-width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  table {
+    width: 70%;
+  }
+}
+
+.mat-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.active {
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  /* Ensures table takes full width */
+}
+
+.no-data {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 1.2rem;
+  color: #666;
+}

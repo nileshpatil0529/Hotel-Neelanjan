@@ -1,0 +1,93 @@
+.scrollable-container {
+    max-height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    padding: 8px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 90vh;
+}
+.payment-dropdown{
+    width: 130px !important;
+}
+.title {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.bill-info {
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+}
+
+.table-wrapper {
+    width: 100%;
+}
+
+/* Style the summary rows */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+}
+
+.summary-row div {
+    flex: 1;
+    text-align: right;
+}
+
+.mat-row:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style the table headers */
+.bill-table th {
+    background-color: #4caf50; /* Green header background */
+    color: white; /* White text for headers */
+    padding: 8px; /* Add padding */
+    border: 1px solid #ddd; /* Add border */
+}
+
+/* Style the table rows */
+.bill-table td {
+    padding: 8px; /* Add padding */
+    border: 1px solid #ddd; /* Add border */
+}
+
+/* Add hover effect for rows */
+.bill-table tr:hover {
+    background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* Style the total, discount, and grand total rows */
+.bill-table tr th[colspan="3"] {
+    font-weight: bold; /* Make text bold */
+    text-align: right; /* Align text to the right */
+}
+
+@media (max-width: 768px) {
+    .bill-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .bill-table {
+        width: 100vh !important;
+    }
+}

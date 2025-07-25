@@ -1,0 +1,32 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmitUpdate()">
+      <mat-form-field appearance="outline">
+        <mat-label>Product Name</mat-label>
+        <input matInput formControlName="product_name" />
+        <mat-error *ngIf="productForm.get('product_name')?.hasError('required')">
+          Required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>In Marathi</mat-label>
+        <input matInput formControlName="marathi" />
+        <mat-error *ngIf="productForm.get('marathi')?.hasError('required')">
+          Required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="product_price" />
+        <mat-error *ngIf="productForm.get('product_price')?.hasError('required')">
+          Required
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">Save</button>
+      <button mat-raised-button type="button" (click)="cancel()">Cancel</button>
+    </form>
+  </mat-card>
+</div>

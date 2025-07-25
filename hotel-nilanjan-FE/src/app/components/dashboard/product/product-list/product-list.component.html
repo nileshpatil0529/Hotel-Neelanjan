@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="form-container">
+    <mat-form-field class="search-bar" appearance="outline">
+      <mat-label>Search Product</mat-label>
+      <input matInput [(ngModel)]="searchValue" (keyup)="applyFilter($event)" placeholder="Product name" />
+      <button mat-button matSuffix *ngIf="searchValue" aria-label="Clear" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="number-select" appearance="outline">
+      <mat-label>Select Table</mat-label>
+      <mat-select [(ngModel)]="tableNumber">
+        <mat-option *ngFor="let table of filteredTables" [value]="table">{{ table }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Show Spinner if data is loading -->
+  <div class="spinner-container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="submit-button" *ngIf="filteredData.data.length">
+    <button mat-raised-button color="accent" (click)="generateBill()" [disabled]="hasErrors()">ORDER</button>
+    <button mat-raised-button color="primary" (click)="getAllProducts()">CLEAR</button>
+    <button mat-raised-button color="warn" (click)="getOrders()" [disabled]="!tableNumber">BILL {{tableNumber}}</button>
+    <button mat-raised-button color="primary" *ngIf="getUserName()?.toLowerCase() === 'admin'" (click)="addNewItem()">Add Item</button>
+  </div>
+
+  <table *ngIf="!loading" mat-table [dataSource]="dataSource" class="mat-table" matSort>
+    <ng-container matColumnDef="product_name">
+      <th mat-header-cell *matHeaderCellDef>Product</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <div class="product-info">
+          <strong>{{ i + 1 }} {{ element.product_name }}</strong><br />
+          <span>{{ element.marathi }}</span><br />
+          <span>Price: ₹{{ element.product_price }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tip">
+      <th mat-header-cell *matHeaderCellDef>Tip</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field class="select-tip" appearance="fill">
+          <mat-label>Tip</mat-label>
+          <mat-select [(ngModel)]="element.category" (selectionChange)="onChangeTip(element, $event)">
+            <mat-option value="">Select Tip</mat-option>
+            <mat-option *ngFor="let category of tips" [value]="category">{{ category }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="spaced-container">
+          <div class="quantity-control">
+            <button class="btn minus" (click)="changeQuantity(element, -1)" [disabled]="element.quantity <= 0">-</button>
+            <span class="quantity-display">{{ element.quantity || 0 }}</span>
+            <button class="btn plus" (click)="changeQuantity(element, 1)">+</button>
+          </div>
+      
+          <div class="action-buttons spaced-buttons" *ngIf="getUserName()?.toLowerCase() === 'admin'">
+            <button mat-mini-fab color="warn" (click)="deleteProduct(element.product_id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="updateProduct(element.product_id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </td>      
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  <div *ngIf="!filteredData.data.length" class="no-data">No Data Found. Please add some products!</div>
+</div>

@@ -1,0 +1,121 @@
+<div class="container">
+  <form [formGroup]="form" class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Table No</mat-label>
+      <mat-select formControlName="table_no">
+        <mat-option *ngFor="let table of tableOptions" [value]="table">{{
+          table
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Seller</mat-label>
+      <mat-select formControlName="seller">
+        <mat-option *ngFor="let user of users" [value]="user.user_name">{{
+          user.user_name | uppercase
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Payment</mat-label>
+      <mat-select formControlName="payment">
+        <mat-option *ngFor="let payment of paymentOptions" [value]="payment">{{
+          payment |uppercase
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>From Date</mat-label>
+      <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="fromPicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>To Date</mat-label>
+      <input matInput [matDatepicker]="toPicker" formControlName="toDate" />
+      <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="form-row">
+      <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      (click)="getHistoricleData()"
+    >
+      Search
+    </button>
+    <button mat-raised-button color="basic" type="button" (click)="clear()">
+      Clear
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="generatePDF()"
+    >
+      Download
+    </button>
+    </div>
+  </form>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Bill No Column -->
+      <ng-container matColumnDef="bill_no">
+        <th mat-header-cell *matHeaderCellDef>Bill No</th>
+        <td mat-cell *matCellDef="let element">{{ element.bill_no }}</td>
+      </ng-container>
+  
+      <!-- Table No Column -->
+      <ng-container matColumnDef="table_no">
+        <th mat-header-cell *matHeaderCellDef>Table No</th>
+        <td mat-cell *matCellDef="let element">{{ element.table_no }}</td>
+      </ng-container>
+  
+      <!-- Seller Column -->
+      <ng-container matColumnDef="seller">
+        <th mat-header-cell *matHeaderCellDef>Seller</th>
+        <td mat-cell *matCellDef="let element">{{ element.seller }}</td>
+      </ng-container>
+      
+      <!-- Pay mode Column -->
+      <ng-container matColumnDef="pay_mode">
+        <th mat-header-cell *matHeaderCellDef>Pay Mode</th>
+        <td mat-cell *matCellDef="let element">{{ element.payment | uppercase }}</td>
+      </ng-container>
+
+      <!-- Total Bill Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total Bill</th>
+        <td mat-cell *matCellDef="let element">₹ {{ element.total - element.discount }}</td>
+      </ng-container>
+  
+      <!-- Created At Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Date Time</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdAt | date : "dd/MM/yy" }}
+        </td>
+      </ng-container>
+  
+      <!-- Header and Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let element; columns: displayedColumns"
+        (click)="bill(element.bill_no, $event)"
+        appClickEffect
+      ></tr>
+    </table><br>
+    <div *ngIf="!dataSource.length" class="no-data">
+      No Data Found !
+    </div>
+</div>

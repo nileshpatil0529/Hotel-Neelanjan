@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  src: url('/assets/icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-container,
+.update-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 5px;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, .26);
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: red;
+  margin: 40px;
+}
+
+.snackbar-success {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+th {
+  background-color: #9e9e9e; /* Grey shade */
+  color: white !important; /* White text for headers */
+  padding: 8px; /* Add padding */
+}
+
+.snackbar-error {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+@media (min-width: 600px) {
+  table {
+      width: 70% !important;
+  }
+}

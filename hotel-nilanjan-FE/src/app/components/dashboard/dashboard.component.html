@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar Drawer -->
+  <mat-sidenav mode="side" #sidenav>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <mat-list-item routerLink="/dashboard" class="menu-item" (click)="toggleDrawer()">
+        <mat-icon matListIcon>home</mat-icon>
+        products
+      </mat-list-item>
+
+      <mat-divider *ngIf="getUserName()?.toLowerCase() === 'admin'"></mat-divider>
+      <mat-list-item routerLink="/dashboard/order" class="menu-item" *ngIf="getUserName()?.toLowerCase() === 'admin'" (click)="toggleDrawer()">
+        <mat-icon matListIcon>shopping_cart</mat-icon>
+        bill
+      </mat-list-item>
+
+      <mat-divider *ngIf="getUserName()?.toLowerCase() === 'admin'"></mat-divider>
+      <mat-list-item *ngIf="getUserName()?.toLowerCase() === 'admin'" routerLink="/dashboard/bill-history" class="menu-item" (click)="toggleDrawer()">
+        <mat-icon matListIcon>receipt</mat-icon>
+        bill history
+      </mat-list-item>
+
+      <mat-divider *ngIf="getUserName()?.toLowerCase() === 'admin'"></mat-divider>
+      <mat-list-item routerLink="/dashboard/user-list" class="menu-item" *ngIf="getUserName()?.toLowerCase() === 'admin'" (click)="toggleDrawer()">
+        <mat-icon matListIcon>list</mat-icon>
+        user list
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="{{getUserID()}}" class="menu-item" (click)="toggleDrawer()">
+        <mat-icon matListIcon>lock</mat-icon>
+        Change Password
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="onLogout(); toggleDrawer()" class="menu-item">
+        <mat-icon matListIcon>logout</mat-icon>
+        Logout
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <div class="button-group" *ngIf="getUserName()?.toLowerCase() === 'admin'">
+        <button mat-raised-button (click)="changeLang('e')" [color]="lang === 'e' ? 'primary' : 'default'">E</button>
+        <button mat-raised-button (click)="changeLang('all')" [color]="lang === 'all' ? 'primary' : 'default'">All</button>
+        <button mat-raised-button (click)="changeLang('m')" [color]="lang === 'm' ? 'primary' : 'default'">M</button>
+      </div>
+      <mat-divider *ngIf="getUserName()?.toLowerCase() === 'admin'"></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  
+
+  <!-- Main Content -->
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="toggleDrawer()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>NEELANJAN</span>
+      <span class="spacer"></span>
+      <span>{{getUserName() | uppercase}}</span>
+    </mat-toolbar>
+    <ng-container>
+      <router-outlet></router-outlet>
+    </ng-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -2,7 +2,6 @@
 # Angular (Frontend) - hotel_nilanjan_FE
 # ==========================
 /hotel_nilanjan_FE/node_modules/
-/hotel_nilanjan_FE/dist/
 /hotel_nilanjan_FE/.angular/cache/
 /hotel_nilanjan_FE/.env
 /hotel_nilanjan_FE/.vscode/
@@ -17,7 +16,6 @@
 # Express.js (Backend) - hotel_nilanjan_BE
 # ==========================
 /hotel_nilanjan_BE/node_modules/
-/hotel_nilanjan_BE/dist/
 /hotel_nilanjan_BE/.env
 /hotel_nilanjan_BE/.vscode/
 /hotel_nilanjan_BE/.idea/
@@ -43,4 +41,3 @@ yarn-error.log*
 # ==========================
 tmp/
 coverage/
-dist/

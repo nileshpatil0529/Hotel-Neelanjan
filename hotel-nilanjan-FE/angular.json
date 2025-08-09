@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hotel-nilanjan-FE",
+            "outputPath": "../hotel_nilanjan_BE/dist/hotel-nilanjan-FE",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

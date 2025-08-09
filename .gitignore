@@ -16,7 +16,6 @@
 # Express.js (Backend) - hotel_nilanjan_BE
 # ==========================
 /hotel_nilanjan_BE/node_modules/
-/hotel_nilanjan_BE/.env
 /hotel_nilanjan_BE/.vscode/
 /hotel_nilanjan_BE/.idea/
 /hotel_nilanjan_BE/npm-debug.log*

@@ -3,7 +3,6 @@
 # ==========================
 /hotel_nilanjan_FE/node_modules/
 /hotel_nilanjan_FE/.angular/cache/
-/hotel_nilanjan_FE/.env
 /hotel_nilanjan_FE/.vscode/
 /hotel_nilanjan_FE/.idea/
 /hotel_nilanjan_FE/npm-debug.log*
@@ -26,7 +25,6 @@
 # Global ignores for repo
 # ==========================
 node_modules/
-.env
 .vscode/
 .idea/
 .DS_Store

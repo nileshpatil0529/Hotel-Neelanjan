@@ -1,12 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://192.168.0.104:5000/api/products';
+  private apiUrl = environment.baseUrl + ':5000/api/products';
 
   constructor(private http: HttpClient) {}
 
@@ -26,23 +27,23 @@ export class ProductService {
   }
 
   getAllProducts() {
-    return this.http.get('http://192.168.0.104:5000/api/products');
+    return this.http.get(this.apiUrl);
   }
 
   deleteProducts(id: number) {
-    return this.http.delete(`http://192.168.0.104:5000/api/products/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
   changePassword(params: any){
-    return this.http.put('http://192.168.0.104:5000/api/users/password', { params });
+    return this.http.put(environment.baseUrl + ':5000/api/users/password', { params });
   }
 
   // Language services
   getLang() {
-    return this.http.get('http://192.168.0.104:5000/api/products/get-lang');
+    return this.http.get(this.apiUrl + '/get-lang');
   }
   
   changeLang(lang: any){
-    return this.http.put('http://192.168.0.104:5000/api/products/change-lang', lang);
+    return this.http.put(this.apiUrl + '/change-lang', lang);
   }
 }

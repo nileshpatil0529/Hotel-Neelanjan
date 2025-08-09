@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://192.168.0.104:5000/api/users';
+  private apiUrl = environment.baseUrl + ':5000/api/users';
   private tokenKey = 'authToken';
 
   constructor(private http: HttpClient, private router: Router) {}

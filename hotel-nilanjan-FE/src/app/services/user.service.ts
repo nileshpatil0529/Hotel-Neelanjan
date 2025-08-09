@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://192.168.0.104:5000/api/users';
+  private apiUrl = environment.baseUrl + ':5000/api/users';
 
   constructor(private http: HttpClient) {}
 
@@ -15,14 +16,14 @@ export class UserService {
   }
 
   checkUsernameExists(username: string): Observable<any> {
-    return this.http.get<any>(`http://192.168.0.104:5000/api/users/${username}`);
+    return this.http.get<any>(`${this.apiUrl}/${username}`);
   }
 
   deleteUser(id: number) {
-    return this.http.delete<any>(`http://192.168.0.104:5000/api/users/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
   addUser(user: any) {
-    return this.http.post<any>(`http://192.168.0.104:5000/api/users/register`, user);
+    return this.http.post<any>(`${this.apiUrl}/register`, user);
   }
 }

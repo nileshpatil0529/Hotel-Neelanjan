@@ -43,3 +43,4 @@ yarn-error.log*
 # ==========================
 tmp/
 coverage/
+dist/

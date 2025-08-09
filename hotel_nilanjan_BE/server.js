@@ -56,7 +56,7 @@ initWebSocket(server);
 // Sync database and start server
 db.sequelize.sync({ force: false })
     .then(() => {
-        server.listen(PORT, '192.168.0.104', () => {
+        server.listen(PORT, '0.0.0.0', () => {
             console.log(`Server running at http://localhost:${PORT}`);
         });
     })
